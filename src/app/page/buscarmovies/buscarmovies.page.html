@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar color="dark" style="margin-top: 2px;margin-bottom: 1px;">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="10">
+          <ion-searchbar  [(ngModel)]="name" style="margin-bottom: 1px;margin-top: 2px;"  placeholder="Buscar aqui..."(keyup.enter)=getMovie($event)></ion-searchbar>
+        </ion-col>
+        <ion-col size="2">
+        <ion-button color="dark" (click)="presentAlertConfirm()"><ion-icon name="cloud-offline" colo="success" slot="end"></ion-icon>
+        </ion-button></ion-col>
+    
+
+    <ion-segment  color="success" value="populares" (ionChange)="segmentChanged($event)" >
+      <ion-segment-button    value="populares" (click)="clipopu()">
+        <ion-label   color="success" >Populares</ion-label>
+      </ion-segment-button>
+      <ion-segment-button  value="estrenos" (click)="cliestre()">
+        <ion-label  color="success" >Estrenos</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-row>
+</ion-grid>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark">
+  <div *ngIf="listav==true">
+    <ion-grid>
+      <ion-row> 
+    <ion-col size="6" size-lg="3" *ngFor="let item of listamovies">
+    <ion-card color="dark" [routerLink]="['../../detail/',item.id,nombre]">
+      <div  *ngIf="item.poster_path==null">
+      <img height="200" width="100%"  src="assets/img/img2.png"></div>
+      <div *ngIf="item.poster_path">
+        <img height="100%" width="100%"  src="https://image.tmdb.org/t/p/original/{{item.poster_path}}">
+      </div>
+    </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-infinite-scroll threshold="100px" (ionInfinite)="getMovie($event)">
+        <ion-infinite-scroll-content
+          loadingSpinner="bubbles"
+          loadingText="Cargando...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </ion-grid>
+  </div>
+
+
+<div *ngIf="populares">
+<ion-grid>
+  <ion-row> 
+<ion-col size="6" size-lg="3" *ngFor="let item of movies">
+<ion-card color="dark" [routerLink]="['../../detail/',item.id,nombre]">
+  <div  *ngIf="item.poster_path==null">
+  <img height="200" width="100%"  src="assets/img/img2.png"></div>
+  <div *ngIf="item.poster_path">
+    <img height="100%" width="100%"  src="https://image.tmdb.org/t/p/original/{{item.poster_path}}">
+  </div>
+</ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="verPopulares($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Cargando...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <!--<div *ngIf="populares">
+<h1>Aqui van las peli populares</h1>
+  </div>-->
+</ion-grid>
+</div>
+<div *ngIf="estrenos">
+  <ion-grid>
+    <ion-row>
+  <ion-col size="6" size-lg="3" *ngFor="let item of moviesEst">
+  <ion-card color="dark" [routerLink]="['../../detail/',item.id,nombre]">
+    <div  *ngIf="item.poster_path==null">
+    <img height="200" width="100%"  src="assets/img/img2.png"></div>
+    <div *ngIf="item.poster_path">
+      <img height="100%" width="100%"  src="https://image.tmdb.org/t/p/original/{{item.poster_path}}">
+    </div>
+  </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="verEstrenos($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Cargando...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-grid>
+    </div>
+</ion-content>

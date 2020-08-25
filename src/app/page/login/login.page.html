@@ -1,0 +1,26 @@
+
+<ion-content padding center text-center color="dark">
+ <ion-title color="success">APP-MOVIES</ion-title>
+ <ion-grid>
+   <ion-row>
+     <ion-col size="12">
+      <div>
+        <img width="100%" height="50%"  src="assets/img/logo.png">
+       </div>
+     
+      <div class="datos">
+        <ion-input [(ngModel)]="nombre"  placeholder="Ingrese Email de Usuario" type="email"><ion-icon name="person" color="success"></ion-icon></ion-input> 
+         <ion-input  [(ngModel)]="pass"  placeholder="Ingrese Contraseña" type="password"><ion-icon name="key" color="success"></ion-icon></ion-input> 
+        </div>
+      <ion-button  shape="round"  size="full"  color="success" (click)="Inilogin(nombre,pass)">Login</ion-button>
+        <ion-button shape="round"  size="full" color="medium" Href="/register" >Register</ion-button>
+        <div><ion-label color="success">¿Olvidaste tu contraseña?</ion-label></div>
+     </ion-col>
+   </ion-row>
+ </ion-grid>
+      
+     
+        <!--<ion-button expand="block" (click)="borrar()"  size="full" type="submit" >Salir</ion-button>-->
+     
+</ion-content>
+<!--Href="/buscarmovies"-->

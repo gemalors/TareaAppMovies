@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title color="success">Registrarse</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login" icon="arrow-back-outline" color="success"></ion-back-button></ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content color="dark">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <div>
+         
+            <img width="100%" height="50%"  src="assets/img/login.png">
+         
+          
+        </div>
+        <div class="datos">
+          <ion-input [(ngModel)]="user.nick" placeholder="Nombre y Apellido" type="text" ><ion-icon name="person" color="success"></ion-icon></ion-input> 
+  
+         <ion-input  [(ngModel)]="user.email" placeholder="Email" type="email"><ion-icon name="mail" color="success"></ion-icon></ion-input> 
+  
+          <ion-input [(ngModel)]="user.password" placeholder="Contraseña" type="password"><ion-icon name="key" color="success"></ion-icon></ion-input> 
+
+          <ion-input [(ngModel)]="veripass" placeholder="Confirmar Contraseña" type="password"><ion-icon name="keypad" color="success"></ion-icon></ion-input> 
+         </div>
+       <ion-button shape="round" ion-button  size="full"  color="success" (click)="addUsuario(veripass)">Crear Cuenta</ion-button>
+       <div><ion-label color="success" (click)="Irlogin()">¿Ya tienes una cuenta?</ion-label></div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+      
+</ion-content>
+<!--Href="/buscarmovies"-->

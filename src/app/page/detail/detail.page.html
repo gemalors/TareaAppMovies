@@ -1,0 +1,65 @@
+<ion-header>
+  <!--<ion-toolbar color="dark">
+    <ion-title color="success">Detalle</ion-title>
+    <ion-buttons slot="start">
+    <ion-back-button faultHref="/buscarmovies" icon="arrow-back-outline" color="success"></ion-back-button></ion-buttons>
+  </ion-toolbar>-->
+  <ion-toolbar color="dark">
+    <ion-title color="success">Detalle</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button faultHref="/buscarmovies"  icon="arrow-back-outline" color="success"></ion-back-button></ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="dark">
+ <ion-grid>
+   <ion-row>
+     <ion-col size="12" >
+      <ion-card color="dark">
+        <div *ngIf="detalleMovies.poster_path==null">
+          <img height="200%" width="100%" src="assets/img/img2.png">
+        </div>
+    
+        <div *ngIf="detalleMovies.poster_path">
+        <img height="100%" width="100%" src="https://image.tmdb.org/t/p/original/{{detalleMovies.poster_path}}">
+      </div>
+    
+        <ion-card-header>
+          <ion-card-subtitle>
+            <ion-chip color="primary" *ngFor="let item of detalleMovies.genres">{{item.name}}</ion-chip>
+          </ion-card-subtitle>
+          <ion-card-title>{{detalleMovies.original_title}}</ion-card-title>
+    
+        </ion-card-header>
+        <ion-card-content>{{detalleMovies.overview}}</ion-card-content>
+        <div> <ion-chip color="success"  [routerLink]="['../../../video/',idMovie]">tráiler<ion-icon name="videocam"  color="success" ></ion-icon></ion-chip>
+          <ion-chip color="success" (click)="verComent()">Comentarios<ion-icon name="chatbubble-ellipses" color="success" ></ion-icon></ion-chip>
+          <ion-chip color="success" >{{detalleMovies.popularity}}<ion-icon size="default" name="star" color="success"></ion-icon></ion-chip>
+        </div>
+     
+          
+          <div *ngIf="verComentario">
+          <ion-item >
+            <ion-input class="ion-text-wrap" [(ngModel)]="descripcion" placeholder="Deja un Comentario..."></ion-input>
+            <ion-icon slot="end" name="send" size="large" color="success"  (click)="enviar()" ></ion-icon>
+      </ion-item>
+    
+      <ion-list>
+      <ion-item lines="none" *ngFor="let item of obtcomet">
+        <ion-avatar slot="start">
+          <img width="100%" height="50%"  src="assets/img/usuario.png">
+        </ion-avatar>
+      <ion-label ><h3>{{item.nombre}}</h3>
+        <p>{{item.created_at| date: "dd/MM/yyyy HH:mm a"}}</p>
+        <h5 class="ion-text-wrap">{{item.descripcion}}</h5>
+      </ion-label>
+      </ion-item>
+    </ion-list>
+    
+     </div>
+        </ion-card>
+     </ion-col>
+   </ion-row>
+ </ion-grid>
+  
+</ion-content>
